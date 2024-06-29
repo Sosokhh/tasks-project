@@ -1,0 +1,42 @@
+.calendar-card {
+  display: inline-block;
+  padding: 16px;
+  border: 1px solid #ccc;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-body div {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.current-month {
+  background-color: #f0f0f0;
+}
+
+.today {
+  background-color: #ffcc00;
+  color: #fff;
+}
+
+.holiday {
+  background-color: #ff6666;
+  color: #fff;
+}

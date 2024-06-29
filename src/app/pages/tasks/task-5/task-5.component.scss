@@ -1,0 +1,27 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.input-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.second-input {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.text-container {
+  position: absolute;
+  right: 25%;
+  top: 25%;
+}

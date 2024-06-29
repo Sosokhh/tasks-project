@@ -1,0 +1,99 @@
+<div class="workspace-header">
+  <h1 class="headline">სამუშაო გამოცდილების დამატება</h1>
+  <div class="actions-container">
+    <button mat-flat-button [disabled]="workingExperienceForm.invalid" type="submit" (click)="submitForm()">დამატება</button>
+  </div>
+</div>
+
+<mat-card appearance="outlined" class="w-5/6 justify-center m-auto mt-2">
+  <div class="flex justify-end">
+    <button mat-icon-button matTooltip="დამატება" type="button" (click)="addFormGroup()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <form class="flex flex-col m-5 p-5"  [formGroup]="workingExperienceForm" (ngSubmit)="submitForm()">
+    <ng-container formArrayName="datas">
+    @for (data of datas; let companyIndex = $index; track companyIndex) {
+      <ng-container [formGroup]="data">
+        <div class="flex justify-between items-center">
+          <h2>კომპანია</h2>
+          @if (datas.length > 1) {
+            <div class="flex justify-end mb-2">
+              <button mat-icon-button matTooltip="წაშლა" type="button" (click)="removeCompany(companyIndex)">
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+          }
+        </div>
+        <mat-form-field>
+          <mat-label>კომპანიის დასახელება</mat-label>
+          <input  formControlName="companyName" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>კომპანიის ვებ-საიტის ადრესი</mat-label>
+          <input formControlName="companyWebsiteAddress" matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>კომპანიის აღწერილობა</mat-label>
+          <input formControlName="companyDescription" matInput>
+        </mat-form-field>
+        <div class="flex justify-start mb-6">
+          <button (click)="addPosition(data)" type="button" mat-button>პოზიციის დამატება</button>
+        </div>
+        @if (data.controls.positions.controls.length >= 1) {
+          <mat-card class="ml-5 mr-5 p-5">
+        <ng-container formArrayName="positions">
+          @for (position of data.controls.positions.controls; let positionIndex = $index; track positionIndex)  {
+            <div class="flex justify-end mb-2">
+              <button mat-icon-button matTooltip="წაშლა" type="button" (click)="removePosition(companyIndex, positionIndex)">
+                <mat-icon>remove</mat-icon>
+              </button>
+            </div>
+          <ng-container [formGroup]="position">
+            <h2>პოზიცია</h2>
+            <mat-form-field>
+              <mat-label>პოზიციის დასახელება</mat-label>
+              <input formControlName="positionName" matInput>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>პოზიციის დონე</mat-label>
+              <mat-select formControlName="positionLevel">
+                @for (level of positionLevels; track level) {
+                  <mat-option [value]="level.key">{{level.value}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>პოზიციის აღწერილობა</mat-label>
+              <input formControlName="positionDescription" matInput>
+            </mat-form-field>
+            <div class="flex gap-5 justify-between">
+              <mat-form-field class="w-1/2">
+                <mat-label>დასრულების თარიღი</mat-label>
+                <input formControlName="positionStartDate" matInput [matDatepicker]="startDatePicker">
+                <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="w-1/2">
+                <mat-label>დასრულების თარიღი</mat-label>
+                <input formControlName="positionEndDate" matInput [matDatepicker]="endDatePicker">
+                <mat-datepicker-toggle matIconSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </ng-container>
+            @if (data.controls.positions.controls.length > 1) {
+              <hr class="mb-8 w-full" />
+            }
+          }
+        </ng-container>
+          </mat-card>
+        }
+      </ng-container>
+      @if (datas.length > 1) {
+        <hr class="mb-8 mt-6 w-full" />
+      }
+    }
+  </ng-container>
+  </form>
+</mat-card>

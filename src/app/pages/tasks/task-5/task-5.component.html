@@ -1,0 +1,27 @@
+<form class="form-container">
+  <div class="input-row flex justify-around" >
+    <mat-form-field class="first-input">
+      <input matInput type="text" #text placeholder="ჩაწერეთ სიტყვა">
+    </mat-form-field>
+    <div class="input-column items-center">
+      <mat-form-field class="second-input">
+        <input matInput type="text" #input placeholder="დაამატეთ სიტყვები">
+      </mat-form-field>
+      <button class="generate-button" (click)="pushToArray(input.value); input.value = ''" [disabled]="!input.value" mat-flat-button>დამატება</button>
+    </div>
+  </div>
+  <div class="text-container">
+    @for (word of wordArray; track $index) {
+      <p>{{ word }}</p>
+    }
+  </div>
+</form>
+
+  <button mat-flat-button (click)="calculate(text.value, wordArray)" [disabled]="text.value && wordArray.length === 0">შედარება</button>
+<br>
+@for (ans of arrSimilarity; track $index) {
+  <p>
+    {{ans.word + '  ' + ans.percentage}}%
+  </p>
+}
+

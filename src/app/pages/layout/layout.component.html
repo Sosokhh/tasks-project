@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Technical Tasks</span>
+  <span class="toolbar-item-spacer"></span>
+</mat-toolbar>
+
+<mat-sidenav-container class="app-container">აღწერა
+  <mat-sidenav #sidenav mode="side" opened="true" class="app-sidenav">
+    <mat-nav-list>
+      @for (routeModel of taskRoutes; track $index) {
+        <a mat-list-item [routerLink]="routeModel.path">{{ routeModel.title }}</a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="inner-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

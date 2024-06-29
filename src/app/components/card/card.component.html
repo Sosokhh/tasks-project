@@ -1,0 +1,9 @@
+<mat-card class="m-1 card">
+  <mat-card-header>
+    <ng-content select="[header]"></ng-content>
+  </mat-card-header>
+  <ng-content></ng-content>
+  <mat-card-content class="content">
+    <ng-content select="[footer]"></ng-content>
+  </mat-card-content>
+</mat-card>

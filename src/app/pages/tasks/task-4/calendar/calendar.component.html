@@ -1,0 +1,23 @@
+<div class="calendar">
+  <mat-toolbar color="primary">
+    <span>{{ currentMonth }}</span>
+  </mat-toolbar>
+  <br>
+  <div class="calendar-grid">
+    @for (weekday of weekdays; track $index) {
+      <div class="weekday-header">
+        {{ weekday }}
+      </div>
+    }
+    @for(day of calendarDays; track $index) {
+      <div class="calendar-day"
+           [ngClass]="{
+             'current-day': day.isToday,
+             'weekend': day.isWeekend && !day.isToday,
+             'other-month': !day.isCurrentMonth
+           }">
+        <div class="day-label">{{ day.day }}</div>
+      </div>
+    }
+  </div>
+</div>

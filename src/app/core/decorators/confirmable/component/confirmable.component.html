@@ -1,0 +1,12 @@
+<ng-container style="font-family: 'Liberty MT Medium', sans-serif" >
+  <div class="header">
+    <h2 mat-dialog-title>{{data.title}}</h2>
+  </div>
+  <div mat-dialog-content>
+   <p > {{data.message}}</p>
+  </div>
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button [mat-dialog-close]="false">არა</button>
+    <button mat-raised-button [mat-dialog-close]="true">დიახ</button>
+  </div>
+</ng-container>

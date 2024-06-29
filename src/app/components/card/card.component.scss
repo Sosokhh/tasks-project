@@ -1,0 +1,16 @@
+.card {
+  width: 400px;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mat-card-header {
+  height: 100px;
+}
+
+.content {
+  height: 130px;
+  overflow: hidden;
+}
